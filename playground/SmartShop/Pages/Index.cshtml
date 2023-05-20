@@ -1,0 +1,60 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Product Description Generator";
+}
+
+<div class="container">
+    <h1>Product Description Generator</h1>
+    <hr />
+    <p class="alert alert-primary mb-4">
+        This playground is a simple example using <a href="https://github.com/GurYN/CoreAssistant">CoreAssistant</a> library to generate product descriptions for an online shop.
+        <br />
+        <br />
+        Initial context prompt used for this example is : <em>"@ViewData["DefaultContext"]"</em>
+    </p>
+    <div class="row">
+        <div class="col-7">
+            <h3>Keyword Options</h3>
+        <div class="input-group">
+            <input type="text" class="form-control" id="keyword" placeholder="type a keyword..." />
+            <button class="btn btn-primary" id="add-keyword">Add</button>
+        </div>
+        <div>
+            <div class="card mt-4 mb-2">
+            <div class="card-body">
+                <p id="keyword-badges" class="card-text">
+                    <span class="badge bg-success">jean</span>
+                    <span class="badge bg-success">white</span>
+                    <span class="badge bg-success">fashion</span>
+                    <span class="badge bg-success">limited edition</span>
+                    <span class="badge bg-success">summer</span>
+                    <span class="badge bg-success">2023</span>
+                </p>
+            </div>
+            </div>
+            <input type="hidden" id="prompt" value="jean, white, fashion, limited edition, summer, 2023" />
+        </div>
+        <div>
+            <button class="btn btn-danger" id="clear">Clear</button>
+            <button class="btn btn-primary" id="send">Generate</button>
+        </div>
+        </div>
+        <div class="col-5">
+            <h3>Preview</h3>
+            <div class="card">
+                <img src="https://placehold.co/600x400?text=Product Photo" class="card-img-top" alt="Product Photo">
+                <div class="card-body">
+                    <h5 class="card-title">Product Title</h5>
+                    <p class="card-text" id="description">Product Description...</p>
+                    <button class="btn btn-primary" disabled>Buy</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+}
