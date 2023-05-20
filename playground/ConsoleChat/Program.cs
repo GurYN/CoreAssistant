@@ -20,7 +20,7 @@ Console.WriteLine("Type your default context (or leave empty):");
 var context = Console.ReadLine();
 Console.WriteLine();
 
-var options = new Options(apiKey);
+var options = new CoreAssistantOptions(apiKey);
 if (!string.IsNullOrEmpty(context))
 {
     options.DefaultContext = context;

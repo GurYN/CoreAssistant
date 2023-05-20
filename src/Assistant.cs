@@ -1,25 +1,33 @@
 ﻿using CoreAssistant.Models;
 using CoreAssistant.Repositories;
 using CoreAssistant.Services;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 
 namespace CoreAssistant;
 
 public class Assistant
 {
-    private readonly Options _options;
+    private readonly CoreAssistantOptions _options;
     private readonly ApiService _apiService;
     private readonly HistoryRepository _historyRepository;
 
-    public Assistant(Options options)
+    [ActivatorUtilitiesConstructor]
+    public Assistant(IOptions<CoreAssistantOptions> options)
+        : this(options.Value)
+    {
+    }
+
+    public Assistant(CoreAssistantOptions options)
     {
         this._options = options;
         this._apiService = new ApiService(this._options.ApiKey);
         this._historyRepository = new HistoryRepository(this._options.DefaultContext);
     }
 
-    public async Task<Answer> AskForSomething(Question question)
+    public async Task<Answer> AskForSomething(Question question, AssistantModel? model = null)
     {        
-        var request = new ApiRequest(AddNewMessageAndGetHistory(question), _options.Model);
+        var request = new ApiRequest(AddNewMessageAndGetHistory(question), model != null ? model : AssistantModel.GPT3_5);
         var result = await _apiService.GetAnswer(request);
 
         this._historyRepository.AddHistoryItem(new HistoryItem() {
@@ -32,11 +40,11 @@ public class Assistant
         return result.ToAnswer();
     }
 
-    public async IAsyncEnumerable<Answer> AskForSomethingAsStream(Question question)
+    public async IAsyncEnumerable<Answer> AskForSomethingAsStream(Question question, AssistantModel? model = null)
     {
-        var request = new ApiRequest(AddNewMessageAndGetHistory(question), _options.Model);
-
+        var request = new ApiRequest(AddNewMessageAndGetHistory(question), model != null ? model : AssistantModel.GPT3_5);
         var result = _apiService.GetAnswerAsStream(request);
+
         var content = "";
         await foreach (var item in result)
         {

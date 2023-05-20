@@ -73,10 +73,7 @@ internal class ApiService
                 chunk = JsonSerializer.Deserialize<ApiResponse>(data);
             }
 
-            if (null != chunk)
-            {
-                yield return chunk;
-            }
+            if (chunk != null) { yield return chunk; }
         }
     }
 }

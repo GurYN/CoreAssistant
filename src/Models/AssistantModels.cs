@@ -1,14 +1,13 @@
 namespace CoreAssistant;
 
-public class Options
+public class CoreAssistantOptions
 {
-    public string ApiKey { get; private set; }
-    public AssistantModel Model { get; set; } = AssistantModel.GPT3_5;
+    public string ApiKey { get; set; } = string.Empty;
     public string DefaultContext { get; set; } = "You're a smart assistant able to answer to any question.";
-    public int MaxToken { get; set; } = 4096;
-    public string User { get; set; } = "CoreAssistant";
 
-    public Options(string apiKey)
+    public CoreAssistantOptions() { }
+
+    public CoreAssistantOptions(string apiKey)
     {
         this.ApiKey = apiKey;
     }
