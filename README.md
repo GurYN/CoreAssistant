@@ -3,6 +3,8 @@ A simple library enabling the power of [ChatGPT](https://chat.openai.com) in you
 
 The library is in active development, stay connected to get new features!
 
+[![Build library](https://github.com/GurYN/CoreAssistant/actions/workflows/build-library.yml/badge.svg?branch=main)](https://github.com/GurYN/CoreAssistant/actions/workflows/build-library.yml)
+
 # Playground examples
 Small app examples are provided to test the library :
 
