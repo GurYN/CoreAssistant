@@ -43,7 +43,7 @@ dotnet run
 ```
 
 # Install the library
-Library will be published on nugget.org in a near future. In the meantime, you can install the library like this :
+Library will be published on nuget.org in a near future. In the meantime, you can install the library like this :
 
 ## 1/ Build and publish your library :
 ```bash
