@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>VinciDev.CoreAssistant</id>
+    <version>0.1.0</version>
+    <authors>Vincent CIBELLI</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <readme>doc/README.md</readme>
+    <projectUrl>https://github.com/GurYN/CoreAssistant</projectUrl>
+    <description>A simple .net6 library enabling the power of ChatGPT in your application.</description>
+    <releaseNotes>First release</releaseNotes>
+    <copyright>Copyright (c) 2023 Vincent CIBELLI</copyright>
+    <tags>gpt chatgpt library assistant</tags>
+    <dependencies>
+      <group targetFramework="net6.0">
+        <dependency id="Microsoft.Extensions.DependencyInjection" version="6.0.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.Options.ConfigurationExtensions" version="6.0.0" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="README.md" target="doc/README.md" />
+    <file src="bin/Release/net6.0/CoreAssistant.dll" target="lib/net6.0/CoreAssistant.dll" />
+  </files>
+</package>
