@@ -3,7 +3,9 @@ A simple library enabling the power of [ChatGPT](https://chat.openai.com) in you
 
 The library is in active development, stay connected to get new features!
 
-[![Build library](https://github.com/GurYN/CoreAssistant/actions/workflows/build-library.yml/badge.svg?branch=main)](https://github.com/GurYN/CoreAssistant/actions/workflows/build-library.yml)
+[![Build library](https://github.com/GurYN/CoreAssistant/actions/workflows/build-library.yml/badge.svg?branch=main)](https://github.com/GurYN/CoreAssistant/actions/workflows/build-library.yml) 
+![Nuget](https://img.shields.io/nuget/v/VinciDev.CoreAssistant)
+
 
 # Playground examples
 Small app examples are provided to test the library :
@@ -43,32 +45,9 @@ dotnet run
 ```
 
 # Install the library
-Library will be published on nuget.org in a near future. In the meantime, you can install the library like this :
-
-## 1/ Build and publish your library :
+You can install the library using nuget
 ```bash
-# Go to the library path
-cd src
-
-# Restore dependencies
-dotnet restore
-
-# Build library
-dotnet build
-
-# Publish library to "output" folder
-dotnet publish -c Release -o output
-```
-
-## 2/ Reference the library
-Add the library (CoreAssistant.dll) in your .csproj project
-
-```xml
-<ItemGroup>
-  <Reference Include="CoreAssistant">
-    <HintPath>path\to\CoreAssistant.dll</HintPath>
-  </Reference>
-</ItemGroup>
+dotnet add package VinciDev.CoreAssistant
 ```
 
 # Quick Start
