@@ -1,8 +1,10 @@
 using System.Text.Json.Serialization;
+using CoreAssistant.Models.Assistants;
+using CoreAssistant.Models.Requests;
 
-namespace CoreAssistant.Models;
+namespace CoreAssistant.Models.Responses;
 
-internal class ApiResponse
+internal class ApiChatCompletionResponse
 {
     [JsonPropertyName("id")]
     public string Id { get; set; } = string.Empty;
@@ -19,8 +21,8 @@ internal class ApiResponse
     [JsonPropertyName("usage")]
     public UsageItem Usage { get; set; } = new();
 
-    public Answer ToAnswer() {
-        return new Answer() {
+    internal ChatAnswer ToAnswer() {
+        return new ChatAnswer() {
             Content = Choices[0].Message.Content,
             TokenUsed = Usage.TotalTokens
         };

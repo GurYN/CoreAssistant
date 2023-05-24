@@ -1,4 +1,5 @@
 ﻿using CoreAssistant;
+using CoreAssistant.Models.Assistants;
 
 Console.Clear();
 
@@ -35,12 +36,13 @@ while (true)
     if (string.IsNullOrEmpty(question))
     {
         Console.WriteLine("You must type a question");
+        Console.WriteLine();
         continue;
     }
 
     if (question.ToLower() == "clear")
     {
-        assistant.ClearHistory();
+        assistant.Chat.ClearConversationHistory();
         Console.WriteLine();
         Console.WriteLine("History cleared");
         Console.WriteLine();
@@ -56,7 +58,7 @@ while (true)
 
     Console.WriteLine();
 
-    var answer = assistant.AskForSomethingAsStream(new Question(question));
+    var answer = assistant.Chat.AskForSomethingAsStream(new ChatQuestion(question));
     Console.WriteLine("Answer from your assistant:");
     await foreach (var item in answer)
     {

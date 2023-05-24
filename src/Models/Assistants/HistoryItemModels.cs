@@ -1,3 +1,5 @@
+using CoreAssistant.Models.Requests;
+
 namespace CoreAssistant.Models;
 
 internal class HistoryItem

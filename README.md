@@ -1,5 +1,5 @@
 # CoreAssistant 
-A simple library enabling the power of [ChatGPT](https://chat.openai.com) in your application.
+A simple library enabling the power of [ChatGPT](https://chat.openai.com) & others services from OpenAI in your application.
 
 The library is in active development, stay connected to get new features!
 
@@ -24,7 +24,7 @@ dotnet run
 ```
 
 ## [SmartShop](playground/SmartShop)
-A web app allowing you to generate description of a product based on keywords
+A web app allowing you to generate title, description, & image of a product based on keywords
 ![SmartShop](documentation/_assets/SmartShop.png)
 
 To test SmartShop example:
@@ -56,16 +56,24 @@ You can use the library directly or using dependency injection.
 ## 1/ Using directly
 ```csharp
 using CoreAssistant;
+using CoreAssistant.Models.Assistants;
 
 ...
 
 var options = new CoreAssistantOptions("YOUR OPENAI API KEY");
 var assistant = new Assistant(options);
 
-var question = new Question("You question");
-var answer = await assistant.AskForSomething(question);
+# Get an answer from ChatGPT Api
+var question = new ChatQuestion("You question");
+var answer = await assistant.Chat.AskForSomething(question);
 
 Console.WriteLine(answer.Content);
+
+# Generate an image with Dall-E Api
+var prompt = new ImagePrompt("A black cat walking on a street during the night");
+var result = await assistant.Image.Generate(prompt);
+
+Console.WriteLine($"Url of the image: {result.Url}");
 ```
 
 ## 2/ Using dependency injection
@@ -85,6 +93,7 @@ __Warning__ : Do not store your API key in source code. Use `appsettings.json` i
 In a class of your project :
 ```csharp
 using CoreAssistant;
+using CoreAssistant.Models.Assistants;
 
 public class ClassName
 {
@@ -95,12 +104,22 @@ public class ClassName
         _assistant = assistant;
     }
 
+    # Get a ChatGPT answer
     public async Task<string> GetAnswer(string query)
     {
-        var question = new Question(query);
-        var answer = await _assistant.AskForSomething(question);
+        var question = new ChatQuestion(query);
+        var answer = await _assistant.Chat.AskForSomething(question);
 
         return answer.Content;
+    }
+
+    # Get a Dall-E image
+    public async Task<string> GenerateImage(string query)
+    {
+        var prompt = new ImagePrompt(query);
+        var result = await _assistant.Image.Generate(prompt);
+
+        return result.Url;
     }
 }
 ````
@@ -120,32 +139,33 @@ var options =
     };
 ```
 
-## Async vs Stream
+## Async vs Stream for Chat answer
 You can use async or stream method to receive an answer. To do so, just call the right method based on your desired result.
 
 Ex:
 ```csharp
 using CoreAssistant;
+using CoreAssistant.Models.Assistants;
 
 ...
 
 var options = new CoreAssistantOptions("YOUR OPENAI API KEY");
 var assistant = new Assistant(options);
-var question = new Question("You question");
+var question = new ChatQuestion("You question");
 
 # Async call
-var answer = await assistant.AskForSomething(question);
+var answer = await assistant.Chat.AskForSomething(question);
 Console.WriteLine(answer.Content);
 
 # Stream call
-var stream = assistant.AskForSomethingAsStream(question);
+var stream = assistant.Chat.AskForSomethingAsStream(question);
 await foreach (var item in stream)
 {
     Console.Write(item.Content);
 }
 ```
 
-## GPT Model
+## ChatGPT Model
 You can define the GPT model used by the library. To do so, set it when calling `AskForSomething()` or `AskForSomethingAsStream()` method.
 
 __Note__: GPT-4 model access is restricted, join the [waiting list](https://openai.com/waitlist/gpt-4-api) to access it.
@@ -153,14 +173,15 @@ __Note__: GPT-4 model access is restricted, join the [waiting list](https://open
 Ex:
 ```csharp
 using CoreAssistant;
+using CoreAssistant.Models.Assistants;
 
 ...
 
-var question = new Question("You question");
+var question = new ChatQuestion("Your question");
 
 # Async call
-var answer = await assistant.AskForSomething(question, AssistantModel.GPT3_5);
+var answer = await assistant.Chat.AskForSomething(question, ChatModel.GPT3_5);
 
 # Stream call
-var stream = assistant.AskForSomethingAsStream(question, AssistantModel.GPT4);
+var stream = assistant.Chat.AskForSomethingAsStream(question, ChatModel.GPT4);
 ```
