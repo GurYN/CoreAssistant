@@ -1,4 +1,4 @@
-namespace CoreAssistant.Models.Assistants;
+namespace CoreAssistant.Models;
 
 public class ChatQuestion
 {

@@ -56,7 +56,7 @@ You can use the library directly or using dependency injection.
 ## 1/ Using directly
 ```csharp
 using CoreAssistant;
-using CoreAssistant.Models.Assistants;
+using CoreAssistant.Models;
 
 ...
 
@@ -93,7 +93,7 @@ __Warning__ : Do not store your API key in source code. Use `appsettings.json` i
 In a class of your project :
 ```csharp
 using CoreAssistant;
-using CoreAssistant.Models.Assistants;
+using CoreAssistant.Models;
 
 public class ClassName
 {
@@ -145,7 +145,7 @@ You can use async or stream method to receive an answer. To do so, just call the
 Ex:
 ```csharp
 using CoreAssistant;
-using CoreAssistant.Models.Assistants;
+using CoreAssistant.Models;
 
 ...
 
@@ -173,7 +173,7 @@ __Note__: GPT-4 model access is restricted, join the [waiting list](https://open
 Ex:
 ```csharp
 using CoreAssistant;
-using CoreAssistant.Models.Assistants;
+using CoreAssistant.Models;
 
 ...
 
