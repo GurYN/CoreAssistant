@@ -1,6 +1,28 @@
 using System.Text.Json.Serialization;
+using CoreAssistant.Models.Assistants;
 
-namespace CoreAssistant.Models;
+namespace CoreAssistant.Models.Requests;
+
+internal class ApiChatCompletionRequest
+{
+    [JsonPropertyName("model")]
+    public string Model { get; set; } = ChatModel.GPT3_5.ToString();
+
+    [JsonPropertyName("stream")]
+    public bool Stream { get; set; } = false;
+
+    [JsonPropertyName("messages")]    
+    public List<ApiMessageItem> Messages { get; set; } = new();
+
+    internal ApiChatCompletionRequest(List<ApiMessageItem> messages, ChatModel? model = null)
+    {
+        if (model != null) {
+            this.Model = model.ToString();
+        }
+
+        this.Messages.AddRange(messages);
+    }
+}
 
 internal class ApiMessageItem
 {

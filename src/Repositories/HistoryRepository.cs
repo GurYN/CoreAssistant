@@ -1,4 +1,5 @@
 using CoreAssistant.Models;
+using CoreAssistant.Models.Requests;
 
 namespace CoreAssistant.Repositories;
 
@@ -6,7 +7,7 @@ internal class HistoryRepository
 {
     private readonly List<HistoryItem> _historyItems = new();
     
-    public HistoryRepository(string context)
+    internal HistoryRepository(string context)
     {
         this._historyItems.Add(new HistoryItem() {
             Message = new ApiMessageItem() {
@@ -16,19 +17,19 @@ internal class HistoryRepository
         });
     }
 
-    public List<HistoryItem> AddHistoryItem(HistoryItem item)
+    internal List<HistoryItem> AddHistoryItem(HistoryItem item)
     {
         this._historyItems.Add(item);
         return this._historyItems;
     }
 
-    public List<HistoryItem> ClearHistory()
+    internal List<HistoryItem> ClearHistory()
     {
         this._historyItems.RemoveRange(1, this._historyItems.Count - 1);
         return this._historyItems;
     }
 
-    public List<HistoryItem> GetHistory()
+    internal List<HistoryItem> GetHistory()
     {
         return _historyItems;
     }

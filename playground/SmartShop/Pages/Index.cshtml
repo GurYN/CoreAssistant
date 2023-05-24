@@ -8,7 +8,7 @@
     <h1>Product Description Generator</h1>
     <hr />
     <p class="alert alert-primary mb-4">
-        This playground is a simple example using <a href="https://github.com/GurYN/CoreAssistant">CoreAssistant</a> library to generate product descriptions for an online shop.
+        This playground is a simple example using <a href="https://github.com/GurYN/CoreAssistant">CoreAssistant</a> library to generate product title, descriptions, and photo for an online shop.
         <br />
         <br />
         Initial context prompt used for this example is : <em>"@ViewData["DefaultContext"]"</em>
@@ -43,9 +43,9 @@
         <div class="col-5">
             <h3>Preview</h3>
             <div class="card">
-                <img src="https://placehold.co/600x400?text=Product Photo" class="card-img-top" alt="Product Photo">
+                <img id="photo" src="https://placehold.co/600x400?text=Product Photo..." class="card-img-top" alt="Product Photo">
                 <div class="card-body">
-                    <h5 class="card-title">Product Title</h5>
+                    <h5 class="card-title" id="title">Product Title...</h5>
                     <p class="card-text" id="description">Product Description...</p>
                     <button class="btn btn-primary" disabled>Buy</button>
                 </div>
