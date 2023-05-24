@@ -63,13 +63,13 @@ using CoreAssistant.Models.Assistants;
 var options = new CoreAssistantOptions("YOUR OPENAI API KEY");
 var assistant = new Assistant(options);
 
-# Get an answer from ChatGPT Api
+// Get an answer from ChatGPT Api
 var question = new ChatQuestion("You question");
 var answer = await assistant.Chat.AskForSomething(question);
 
 Console.WriteLine(answer.Content);
 
-# Generate an image with Dall-E Api
+// Generate an image with Dall-E Api
 var prompt = new ImagePrompt("A black cat walking on a street during the night");
 var result = await assistant.Image.Generate(prompt);
 
@@ -104,7 +104,7 @@ public class ClassName
         _assistant = assistant;
     }
 
-    # Get a ChatGPT answer
+    // Get a ChatGPT answer
     public async Task<string> GetAnswer(string query)
     {
         var question = new ChatQuestion(query);
@@ -113,7 +113,7 @@ public class ClassName
         return answer.Content;
     }
 
-    # Get a Dall-E image
+    // Get a Dall-E image
     public async Task<string> GenerateImage(string query)
     {
         var prompt = new ImagePrompt(query);
