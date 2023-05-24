@@ -1,4 +1,4 @@
-using CoreAssistant.Models.Assistants;
+using CoreAssistant.Models;
 using CoreAssistant.Models.Requests;
 using CoreAssistant.Services;
 

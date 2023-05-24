@@ -1,5 +1,5 @@
 using System.Text.Json.Serialization;
-using CoreAssistant.Models.Assistants;
+using CoreAssistant.Models;
 
 namespace CoreAssistant.Models.Requests;
 

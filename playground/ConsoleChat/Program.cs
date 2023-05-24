@@ -1,5 +1,5 @@
 ﻿using CoreAssistant;
-using CoreAssistant.Models.Assistants;
+using CoreAssistant.Models;
 
 Console.Clear();
 
